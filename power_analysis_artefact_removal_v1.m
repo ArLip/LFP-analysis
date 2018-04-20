@@ -4,7 +4,7 @@ close all %close all previous data
 clear all
 
 %loading data
-x = load_open_ephys_data_faster('100_CH19.continuous'); %open channel of interest
+x = load_open_ephys_data_faster('100_CH20.continuous'); %open channel of interest
 
 %downsample to fs=3 000 from the original fs=30 000
 ds =x(1:10:end);
@@ -19,6 +19,7 @@ cf = 0.195;           % conversion factor of EEG = 0.195
 
 %amplitude corrected data
 y = cf*ds;            % cf = 0.195 conversion factor (1483572x1)
+
 
 %% filtering
 %theta filtering 4-12 Hz
@@ -98,3 +99,10 @@ loglog(x_axis,yy_axis); % Pyy starts at 1 and f(1)=0
 title('Smoothed powerspectrum')
 xlabel('Frequency (Hz)')
 ylabel('Power (mV2)')
+
+%% Figure of raw data 
+ figure
+ plot(t,y); 
+ title('Raw EEG')
+ xlabel('time (s)')
+ ylabel('amplitude (mikroV)')
